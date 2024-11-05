@@ -10,19 +10,42 @@
 
 using namespace std;
 
+
+void PrintMatrixSum(short sumArr[30], short counter) {
+
+	for (short i = 0; i < counter; i++) {
+
+		cout << "Sum Of Row " << i + 1 << " : " << sumArr[i] << endl;
+
+	}
+
+}
+
 void Matrix(int row, int colm) {
 
 	short arr[30][30];
+	short sumArr[30];
+	short counter = 0;
 
 	for (short i = 0; i < row; i++) {
 
+		short sum = 0;
+
 		for (short j = 0; j < colm; j++) {
 			arr[i][j] = gnr::RandomNumber(1, 100);
+			sum +=arr[i][j];
 			cout << setw(3)<<arr[i][j] << "    ";
+			
 		}
+		sumArr[counter] = sum;
+		counter++;
 		cout << endl;
 	}
+	cout << "\n\n";
+	PrintMatrixSum(sumArr, counter);
 }
+
+
 
 
 int main()
