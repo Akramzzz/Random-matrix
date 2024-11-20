@@ -163,6 +163,114 @@ bool IsEqual(short arr[30][30], short arr2[30][30], short row, short colm) {
 
 }
 
+void CountTheNumberInMatrix(short arr[30][30],short row,short colm,short numberToLookFor) {
+
+	short counter = 0;
+
+	for (short i = 0; i < row; i++) {
+		for (short j = 0; j < colm; j++) {
+			if (arr[i][j] == numberToLookFor) {
+				counter++;
+			}
+		}
+		
+	}
+	cout << "Number " << numberToLookFor << " Count In Matrix Is : " << counter << "\n\n";
+}
+
+void PrintIntersectedNumbers(short arr[30][30], short arr2[30][30], short row, short colm) {
+
+	short Similarities[30];
+	short counter = 0;
+
+	for (short i = 0; i < row; i++) {
+		for (short j = 0; j < colm; j++) {
+
+			if (arr[i][j] == arr2[i][j]) {
+				Similarities[counter] = arr[i][j];
+				counter++;
+			}
+
+		}
+	}
+	
+	cout << "Intersected Numbers In Matrices : ";
+	if (counter == 0) { cout << "Zero"; }
+	for (short x = 0; x < counter;x++) {
+		cout<<setw(3)<< Similarities[x] << "   ";
+	}
+
+	cout << "\n\n";
+
+}
+
+void IsNumberInMatrix(short arr[30][30], short row, short colm, short numberToLookFor) {
+
+	bool avaliable = false;
+
+	for (short i = 0; i < row; i++) {
+		for (short j = 0; j < colm; j++) {
+
+			if (arr[i][j] == numberToLookFor) {
+				avaliable = true;
+				break;
+			}
+
+			else{ 
+				avaliable = false;
+			}
+		}
+
+		if (avaliable) { break; }
+
+	}
+
+	if (avaliable) {
+		cout << "Number " << numberToLookFor << " Is There :)\n";
+	}
+
+	else {
+		cout << "Number " << numberToLookFor << " Is Not There :(\n\n";
+	}
+}
+
+void MinimumNumberInMatrix(short arr[30][30],short row,short colm) {
+
+	short minimum = arr[0][0];
+
+	for (short i = 0; i < row; i++) {
+		for (short j = 0; j < colm; j++) {
+		
+			if (arr[i][j] < minimum) {
+				minimum = arr[i][j];
+			}
+		
+		}
+	}
+
+	cout << "Minmum Number In Matrix : " << minimum << "\n\n";
+
+}
+
+void MaximumNumberInMatrix(short arr[30][30], short row, short colm) {
+
+	short maximum = arr[0][0];
+
+	for (short i = 0; i < row; i++) {
+		for (short j = 0; j < colm; j++) {
+
+			if (arr[i][j] > maximum) {
+				maximum = arr[i][j];
+			}
+
+		}
+	}
+
+	cout << "Maximum Number In Matrix : " << maximum << "\n\n";
+
+}
+
+
 void Matrix(short arr[30][30],int row, int colm) {
 
 	short RowSumArr[30];
@@ -202,8 +310,13 @@ void Matrix(short arr[30][30],int row, int colm) {
 
 	MiddleColumnOfMatrix(arr, row, colm);
 
-}
+	MinimumNumberInMatrix(arr, row, colm);
 
+	MaximumNumberInMatrix(arr, row, colm);
+
+
+
+}
 
 int main()
 {
@@ -223,21 +336,14 @@ int main()
 
 	SumOfMatrix(arr, row, colm);
 
-	cout << "Matrix 2 : \n\n";
-
+	cout << "Matrix 2 :\n";
 	Matrix(arr2, row, colm);
+	
+	SumOfMatrix(arr2, row, colm);
 
-	if (IsEqual(arr, arr2, row, colm)){
+	PrintIntersectedNumbers(arr, arr2, row, colm);
 
-		cout << "\nMatricses Are Equal\n\n" << endl;
 
-	}
-
-	else {
-
-		cout << "\nMatricses Are Not Equal\n\n" << endl;
-
-	}
 
 }
 
